@@ -21,7 +21,7 @@
 
 #define TEST_TASK1 TRUE
 #define TEST_TASK2 TRUE
-#define TEST_TASK3 FALSE
+#define TEST_TASK3 TRUE
 #define TEST_TASK4 FALSE
 #define TEST_TASK5 FALSE
 

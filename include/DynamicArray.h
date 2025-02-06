@@ -100,7 +100,25 @@ namespace csc232 {
     template<typename T>
     DynamicArray<T> operator+(const DynamicArray<T> &lhs, const DynamicArray<T> &rhs) {
         // TODO: Task 3 - Implement me accordingly
-        return DynamicArray<T>{};
+        size_t newSize = lhs.size() + rhs.size(); // get the size of new array
+        size_t newCapacity = lhs.capacity() + rhs.capacity(); // get the capacity of new array
+
+        T* newData = new T[newCapacity];    // allocate the new dynamic array
+
+        for (size_t i = 0; i < lhs.size(); i++){
+            newData[i] = lhs[i];
+        }   // copy lhs data
+
+        for (size_t i = 0; i < rhs.size(); i++){
+            newData[lhs.size() + i] = rhs[i];
+        }   // copy rhs data
+
+        DynamicArray<T> sum(newData, newSize, newCapacity);  // allocate the new dynamic array
+
+        delete[] newData;   // // free the dynamically allocated memory
+        newData = nullptr;
+
+        return sum;
     }
 
     /**
