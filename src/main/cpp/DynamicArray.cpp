@@ -25,21 +25,27 @@ namespace csc232 {
 
     // TODO: Task 1a - Implement me accordingly
     template<typename T>
-    DynamicArray<T>::DynamicArray() {
-
-    }
+    DynamicArray<T>::DynamicArray() :
+    data_{new T[DEFAULT_CAPACITY]}, size_{0}, capacity_{DEFAULT_CAPACITY}
+    {}
 
     // TODO: Task 1b - Free resources accordingly
     template<typename T>
     DynamicArray<T>::~DynamicArray() {
-
+        delete[] data_;     // Free the dynamic allocated array
+        data_ = nullptr;    // Prevent dangling pointer
     }
 
     // TODO: Task 1c - Implement me accordingly
     template<typename T>
-    DynamicArray<T>::DynamicArray(const DynamicArray &src) {
-
+    DynamicArray<T>::DynamicArray(const DynamicArray &src) : data_{new T[src.capacity_]}, size_{src.size_}, capacity_{src.capacity_}
+    //  Allocate new memory and copy size and capacity
+    {
+        for (size_t i = 0; i < size_; i++){
+            data_[i] = src.data_[i];
+        }   // end of for loop, copy elements from source array to new array
     }
+
 
 // TODO: Task 2 - Implement me accordingly
 template<typename T>
