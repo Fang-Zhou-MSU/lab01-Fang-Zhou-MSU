@@ -49,7 +49,24 @@ namespace csc232 {
 
 // TODO: Task 2 - Implement me accordingly
 template<typename T>
-DynamicArray<T> &DynamicArray<T>::operator=(const DynamicArray &rhs) {
+DynamicArray<T> &DynamicArray<T>::operator=(const DynamicArray &rhs) 
+{
+    if (this == &rhs)
+    {
+        return *this;
+    }   // end if, check if this is a self copy, if yes, do nothing and return itself 
+
+    delete[] data_;     // free old memory to prevent memory leak
+    data_ = nullptr;    // avoid dangling pointer
+
+    data_ = new T[rhs.capacity_];   // allocate new memory
+    size_ = rhs.size_;
+    capacity_ = rhs.capacity_;  // copy size and capacity
+
+    for (size_t i = 0; i < size_; i++){
+        data_[i] = rhs.data_[i];
+    }   // end of for loop, copy elements from rhs array
+    
   return *this;
 }
 
